@@ -2,34 +2,27 @@
 # the open-source pygame library
 # throughout this file
 import pygame
+
 from constants import *
 
 def main():
-    # Initialize pygame
+
     pygame.init()
 
-    # Create game window
-    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    screen = pygame.display.set_mode((600, 400))  # Creates a 600x400 window
+    pygame.display.set_caption("Test Pygame")
 
-    print("Starting Asteroids!")
-    print("Screen width:", SCREEN_WIDTH)
-    print("Screen height:", SCREEN_HEIGHT)
-
-    running = False
-
-    while running == True:
-        
-        # Event handling
+    running = True
+    while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
 
-        # Fill screen black
-        screen.fill((0, 0, 0))
-
+        screen.fill((255, 255, 255))  # Fills the screen white
         pygame.display.flip()
-    
-    
 
+    pygame.quit()
+
+    
     if __name__ == "__main__":
         main()
