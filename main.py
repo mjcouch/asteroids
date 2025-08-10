@@ -7,7 +7,7 @@ from constants import *
 
 def main():
 
-    pygame.init()
+    print(pygame.init())
 
     screen = pygame.display.set_mode((600, 400))  # Creates a 600x400 window
     pygame.display.set_caption("Test Pygame")
@@ -18,11 +18,11 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
 
-        screen.fill((255, 255, 255))  # Fills the screen white
+        screen.fill((0, 0, 0)  # Fills the screen black
         pygame.display.flip()
 
     pygame.quit()
 
     
-    if __name__ == "__main__":
-        main()
+if __name__ == "__main__":
+     main()
