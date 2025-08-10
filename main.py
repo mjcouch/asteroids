@@ -2,6 +2,8 @@
 # the open-source pygame library
 # throughout this file
 import pygame
+from player import Player
+
 
 from constants import *
 
