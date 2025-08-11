@@ -1,9 +1,9 @@
-# this allows us to use code from
-# the open-source pygame library
-# throughout this file
 import pygame
 from constants import *
 from player import Player
+from asteroid import Asteroid
+from asteroidfield import AsteroidField
+
 
 def main():
 
@@ -13,12 +13,16 @@ def main():
 
     clock = pygame.time.Clock()         # Create a clock instance
 
-    updateable = pygame.sprite.Group()
+    updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
+    asteroids = pygame.sprite.Group()
 
-    # Create player group containers
-    Player.containers = (updateable, drawable)
+    # Create asteroid container membership
+    Asteroid.containers = (asteroids, updatable, drawable)
+    AsteroidField.containers = updatable
+    asteroid_field = AsteroidField()                        # Create the asteroid field
 
+    Player.containers = (updatable, drawable)
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)    # Create the player object
 
     pygame.display.set_caption("Test Pygame")
@@ -32,14 +36,14 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
 
-        updateable.update(dt)       # update the updateable group to reflect movement
+        updatable.update(dt)        # update the updateable group to reflect movement
 
-        screen.fill("black")  # Fills the screen black
+        screen.fill("black")        # Fills the screen black
 
         for obj in drawable:
-            obj.draw(screen)     # re-render all objects on screen
+            obj.draw(screen)        # re-render all objects on screen
 
-        pygame.display.flip()   # Update the display
+        pygame.display.flip()       # Update the display
 
         # Get the time passed since the last frame
         # clock.tick() returns the milliseconds since the last call

@@ -1,4 +1,3 @@
-# Player.py - Presents the player's "ship"
 import pygame
 from constants import *
 from circleshape import CircleShape
