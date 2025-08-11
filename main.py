@@ -11,6 +11,8 @@ def main():
 
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))  # Creates a 600x400 window
 
+    pygame.display.set_caption("Test Pygame")
+    
     clock = pygame.time.Clock()         # Create a clock instance
 
     updatable = pygame.sprite.Group()
@@ -25,8 +27,6 @@ def main():
     Player.containers = (updatable, drawable)
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)    # Create the player object
 
-    pygame.display.set_caption("Test Pygame")
-
     running = True
     dt = 0
 
@@ -39,7 +39,7 @@ def main():
         updatable.update(dt)        # update the updateable group to reflect movement
 
         screen.fill("black")        # Fills the screen black
-
+        
         for obj in drawable:
             obj.draw(screen)        # re-render all objects on screen
 
