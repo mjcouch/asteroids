@@ -2,9 +2,7 @@
 # the open-source pygame library
 # throughout this file
 import pygame
-
 from constants import *
-
 from player import Player
 
 def main():
@@ -14,6 +12,12 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))  # Creates a 600x400 window
 
     clock = pygame.time.Clock()         # Create a clock instance
+
+    updateable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+
+    # Create player group containers
+    Player.containers = (updateable, drawable)
 
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)    # Create the player object
 
@@ -28,12 +32,13 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
 
-        player.update(dt)       # update the player object to reflect lt and rt rotation
+        updateable.update(dt)       # update the updateable group to reflect movement
 
         screen.fill("black")  # Fills the screen black
 
-        player.draw(screen)     # re-render player object on screen
-        
+        for obj in drawable:
+            obj.draw(screen)     # re-render all objects on screen
+
         pygame.display.flip()   # Update the display
 
         # Get the time passed since the last frame
